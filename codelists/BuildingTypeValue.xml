@@ -1,0 +1,23 @@
+<?xml-stylesheet type='text/xsl' href='./CodelistDictionary-v32.xsl'?><gml:Dictionary xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" gml:id="BuildingTypeValue" xsi:schemaLocation="http://www.opengis.net/gml/3.2 null">
+  <gml:identifier codeSpace="www.energyADE.de">BuildingTypeValue</gml:identifier>
+  <gml:dictionaryEntry>
+    <gml:Definition gml:id="_8500_11019">
+      <gml:identifier codeSpace="www.energyADE.de/BuildingTypeValue">apartmentBlock</gml:identifier>
+    </gml:Definition>
+  </gml:dictionaryEntry>
+  <gml:dictionaryEntry>
+    <gml:Definition gml:id="_8500_11020">
+      <gml:identifier codeSpace="www.energyADE.de/BuildingTypeValue">multiFamilyHouse</gml:identifier>
+    </gml:Definition>
+  </gml:dictionaryEntry>
+  <gml:dictionaryEntry>
+    <gml:Definition gml:id="_8500_11021">
+      <gml:identifier codeSpace="www.energyADE.de/BuildingTypeValue">singleFamilyHouse</gml:identifier>
+    </gml:Definition>
+  </gml:dictionaryEntry>
+  <gml:dictionaryEntry>
+    <gml:Definition gml:id="_8500_11022">
+      <gml:identifier codeSpace="www.energyADE.de/BuildingTypeValue">terracedHouse</gml:identifier>
+    </gml:Definition>
+  </gml:dictionaryEntry>
+</gml:Dictionary>

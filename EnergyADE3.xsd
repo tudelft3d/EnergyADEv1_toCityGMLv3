@@ -1,0 +1,1663 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:bldg="http://www.opengis.net/citygml/building/3.0" xmlns:con="http://www.opengis.net/citygml/construction/3.0" xmlns:core="http://www.opengis.net/citygml/3.0" xmlns:dyn="http://www.opengis.net/citygml/dynamizer/3.0" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:nrg="www.energyADE.de" elementFormDefault="qualified" targetNamespace="www.energyADE.de" version="1.0">
+  <import namespace="http://www.opengis.net/citygml/3.0" schemaLocation="./core.xsd"/>
+  <import namespace="http://www.opengis.net/citygml/building/3.0" schemaLocation="./building.xsd"/>
+  <import namespace="http://www.opengis.net/citygml/construction/3.0" schemaLocation="./construction.xsd"/>
+  <import namespace="http://www.opengis.net/citygml/dynamizer/3.0" schemaLocation="./dynamizer.xsd"/>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+  <!--XML Schema document created by ShapeChange - http://shapechange.net/-->
+  <element abstract="true" name="AbstractEnergyConversionSystem" substitutionGroup="nrg:AbstractEnergySystem" type="nrg:AbstractEnergyConversionSystemType"/>
+  <complexType abstract="true" name="AbstractEnergyConversionSystemType">
+    <complexContent>
+      <extension base="nrg:AbstractEnergySystemType">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="provides" type="nrg:EnergyFlowPropertyType">
+            <annotation>
+              <appinfo>
+                <reversePropertyName xmlns="http://www.opengis.net/gml/3.2">nrg:isProvidedBy</reversePropertyName>
+              </appinfo>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="has">
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractFeatureMemberType">
+                  <sequence minOccurs="0">
+                    <element ref="nrg:SystemOperation"/>
+                  </sequence>
+                  <attributeGroup ref="gml:AssociationAttributeGroup"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="efficiencyIndicator" type="string"/>
+          <element minOccurs="0" name="installedPower" type="gml:MeasureType"/>
+          <element minOccurs="0" name="nominalEfficiency" type="gml:MeasureType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="AbstractEnergyConversionSystemPropertyType">
+    <sequence minOccurs="0">
+      <element ref="nrg:AbstractEnergyConversionSystem"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element abstract="true" name="AbstractEnergyDistributionSystem" substitutionGroup="nrg:AbstractEnergySystem" type="nrg:AbstractEnergyDistributionSystemType"/>
+  <complexType abstract="true" name="AbstractEnergyDistributionSystemType">
+    <complexContent>
+      <extension base="nrg:AbstractEnergySystemType">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="distributes" type="nrg:EnergyFlowPropertyType">
+            <annotation>
+              <appinfo>
+                <reversePropertyName xmlns="http://www.opengis.net/gml/3.2">nrg:isDistributedBy</reversePropertyName>
+              </appinfo>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="distributionPerimeter" type="nrg:DistributionTypeValueType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="AbstractEnergyDistributionSystemPropertyType">
+    <sequence minOccurs="0">
+      <element ref="nrg:AbstractEnergyDistributionSystem"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element abstract="true" name="AbstractEnergySystem" substitutionGroup="core:AbstractOccupiedSpace" type="nrg:AbstractEnergySystemType"/>
+  <complexType abstract="true" name="AbstractEnergySystemType">
+    <complexContent>
+      <extension base="core:AbstractOccupiedSpaceType">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="installedIn" type="core:AbstractCityObjectPropertyType"/>
+          <element minOccurs="0" name="numberOfDevices" type="integer"/>
+          <element minOccurs="0" name="model" type="string"/>
+          <element minOccurs="0" name="serviceLife" type="nrg:ServiceLifePropertyType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="AbstractEnergySystemPropertyType">
+    <sequence minOccurs="0">
+      <element ref="nrg:AbstractEnergySystem"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element abstract="true" name="AbstractLayeredMaterial" substitutionGroup="core:AbstractFeatureWithLifespan" type="nrg:AbstractLayeredMaterialType"/>
+  <complexType abstract="true" name="AbstractLayeredMaterialType">
+    <complexContent>
+      <extension base="core:AbstractFeatureWithLifespanType">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="AbstractLayeredMaterialPropertyType">
+    <sequence minOccurs="0">
+      <element ref="nrg:AbstractLayeredMaterial"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element abstract="true" name="AbstractMaterial" substitutionGroup="core:AbstractFeatureWithLifespan" type="nrg:AbstractMaterialType"/>
+  <complexType abstract="true" name="AbstractMaterialType">
+    <complexContent>
+      <extension base="core:AbstractFeatureWithLifespanType">
+        <sequence>
+          <element minOccurs="0" name="imageTexture" type="nrg:ImageTexturePropertyType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="AbstractMaterialPropertyType">
+    <sequence minOccurs="0">
+      <element ref="nrg:AbstractMaterial"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element abstract="true" name="AbstractSchedule" substitutionGroup="core:AbstractFeatureWithLifespan" type="nrg:AbstractScheduleType"/>
+  <complexType abstract="true" name="AbstractScheduleType">
+    <complexContent>
+      <extension base="core:AbstractFeatureWithLifespanType">
+        <sequence>
+          <element minOccurs="0" name="dynamizer" type="core:AbstractDynamizerPropertyType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="AbstractSchedulePropertyType">
+    <sequence minOccurs="0">
+      <element ref="nrg:AbstractSchedule"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element abstract="true" name="AbstractSolarEnergySystem" substitutionGroup="nrg:AbstractEnergyConversionSystem" type="nrg:AbstractSolarEnergySystemType"/>
+  <complexType abstract="true" name="AbstractSolarEnergySystemType">
+    <complexContent>
+      <extension base="nrg:AbstractEnergyConversionSystemType">
+        <sequence>
+          <element minOccurs="0" name="installedOnBuildingInstallation" type="bldg:BuildingInstallationPropertyType"/>
+          <element minOccurs="0" name="installedOnConstructionSurface" type="con:AbstractConstructionSurfacePropertyType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="AbstractSolarEnergySystemPropertyType">
+    <sequence minOccurs="0">
+      <element ref="nrg:AbstractSolarEnergySystem"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element abstract="true" name="AbstractStorageSystem" substitutionGroup="nrg:AbstractEnergySystem" type="nrg:AbstractStorageSystemType"/>
+  <complexType abstract="true" name="AbstractStorageSystemType">
+    <complexContent>
+      <extension base="nrg:AbstractEnergySystemType">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="stores" type="nrg:EnergyFlowPropertyType">
+            <annotation>
+              <appinfo>
+                <reversePropertyName xmlns="http://www.opengis.net/gml/3.2">nrg:isStoredBy</reversePropertyName>
+              </appinfo>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="AbstractStorageSystemPropertyType">
+    <sequence minOccurs="0">
+      <element ref="nrg:AbstractStorageSystem"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element abstract="true" name="AbstractThermalZone" substitutionGroup="bldg:AbstractBuildingSubdivision" type="nrg:AbstractThermalZoneType"/>
+  <complexType abstract="true" name="AbstractThermalZoneType">
+    <complexContent>
+      <extension base="bldg:AbstractBuildingSubdivisionType">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="contains" type="nrg:AbstractUsageZonePropertyType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="AbstractThermalZonePropertyType">
+    <sequence minOccurs="0">
+      <element ref="nrg:AbstractThermalZone"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element abstract="true" name="AbstractUsageZone" substitutionGroup="bldg:AbstractBuildingSubdivision" type="nrg:AbstractUsageZoneType"/>
+  <complexType abstract="true" name="AbstractUsageZoneType">
+    <complexContent>
+      <extension base="bldg:AbstractBuildingSubdivisionType">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="AbstractUsageZonePropertyType">
+    <sequence minOccurs="0">
+      <element ref="nrg:AbstractUsageZone"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <simpleType name="AcquisitionMethodValueType">
+    <restriction base="string">
+      <enumeration value="measurement"/>
+      <enumeration value="simulation"/>
+      <enumeration value="calibratedSimulation"/>
+      <enumeration value="estimation"/>
+      <enumeration value="unknown"/>
+    </restriction>
+  </simpleType>
+  <element name="AirCompressor" substitutionGroup="nrg:AbstractEnergyConversionSystem" type="nrg:AirCompressorType"/>
+  <complexType name="AirCompressorType">
+    <complexContent>
+      <extension base="nrg:AbstractEnergyConversionSystemType">
+        <sequence>
+          <element name="compressorType" type="nrg:CompressorTypeValueType"/>
+          <element minOccurs="0" name="pressure" type="gml:MeasureType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="AirCompressorPropertyType">
+    <sequence minOccurs="0">
+      <element ref="nrg:AirCompressor"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="Boiler" substitutionGroup="nrg:AbstractEnergyConversionSystem" type="nrg:BoilerType"/>
+  <complexType name="BoilerType">
+    <complexContent>
+      <extension base="nrg:AbstractEnergyConversionSystemType">
+        <sequence>
+          <element name="hasCondensation" type="boolean"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="BoilerPropertyType">
+    <sequence minOccurs="0">
+      <element ref="nrg:Boiler"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="BuildingProperties" substitutionGroup="bldg:ADEOfAbstractBuilding" type="nrg:BuildingPropertiesType"/>
+  <complexType name="BuildingPropertiesType">
+    <complexContent>
+      <extension base="bldg:ADEOfAbstractBuildingType">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="usageZone">
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractFeatureMemberType">
+                  <sequence minOccurs="0">
+                    <element ref="nrg:AbstractUsageZone"/>
+                  </sequence>
+                  <attributeGroup ref="gml:AssociationAttributeGroup"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="aggregatedBuildingLayering" type="nrg:AbstractLayeredMaterialPropertyType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="thermalZone">
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractFeatureMemberType">
+                  <sequence minOccurs="0">
+                    <element ref="nrg:AbstractThermalZone"/>
+                  </sequence>
+                  <attributeGroup ref="gml:AssociationAttributeGroup"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="buildingType" type="gml:CodeType"/>
+          <element minOccurs="0" name="constructionWeight" type="nrg:ConstructionWeightValueType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="energyPerformanceCertification" type="nrg:EnergyPerformanceCertificationPropertyType"/>
+          <element minOccurs="0" name="isLandmarked" type="boolean"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="refurbishmentMeasure" type="nrg:RefurbishmentMeasurePropertyType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="BuildingPropertiesPropertyType">
+    <sequence>
+      <element ref="nrg:BuildingProperties"/>
+    </sequence>
+  </complexType>
+  <element name="BuildingUnitOccupancy" substitutionGroup="bldg:ADEOfBuildingUnit" type="nrg:BuildingUnitOccupancyType"/>
+  <complexType name="BuildingUnitOccupancyType">
+    <complexContent>
+      <extension base="bldg:ADEOfBuildingUnitType">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="equippedWith" type="nrg:FacilitiesPropertyType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="occupiedBy" type="nrg:OccupantsPropertyType"/>
+          <element minOccurs="0" name="numberOfRooms" type="integer"/>
+          <element minOccurs="0" name="ownerName" type="string"/>
+          <element minOccurs="0" name="ownershipType" type="nrg:OwnershipTypeValueType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="energyPerformanceCertification" type="nrg:EnergyPerformanceCertificationPropertyType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="BuildingUnitOccupancyPropertyType">
+    <sequence>
+      <element ref="nrg:BuildingUnitOccupancy"/>
+    </sequence>
+  </complexType>
+  <simpleType name="CellTypeValueType">
+    <restriction base="string">
+      <enumeration value="monocrystalline"/>
+      <enumeration value="polycrystalline"/>
+      <enumeration value="amorphous"/>
+    </restriction>
+  </simpleType>
+  <element name="Chiller" substitutionGroup="nrg:AbstractEnergyConversionSystem" type="nrg:ChillerType"/>
+  <complexType name="ChillerType">
+    <complexContent>
+      <extension base="nrg:AbstractEnergyConversionSystemType">
+        <sequence>
+          <element name="condensationType" type="nrg:CondensationTypeValueType"/>
+          <element name="compressorType" type="nrg:CompressorTypeValueType"/>
+          <element minOccurs="0" name="refrigerant" type="string"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="ChillerPropertyType">
+    <sequence minOccurs="0">
+      <element ref="nrg:Chiller"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <simpleType name="CollectorTypeValueType">
+    <restriction base="string">
+      <enumeration value="flatPlaneCollector"/>
+      <enumeration value="evacuatedTubeCollector"/>
+    </restriction>
+  </simpleType>
+  <element name="CombinedHeatPower" substitutionGroup="nrg:AbstractEnergyConversionSystem" type="nrg:CombinedHeatPowerType"/>
+  <complexType name="CombinedHeatPowerType">
+    <complexContent>
+      <extension base="nrg:AbstractEnergyConversionSystemType">
+        <sequence>
+          <element name="technologyType" type="string"/>
+          <element minOccurs="0" name="thermalEfficiency" type="gml:ScaleType"/>
+          <element minOccurs="0" name="electricalEfficiency" type="gml:ScaleType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="CombinedHeatPowerPropertyType">
+    <sequence minOccurs="0">
+      <element ref="nrg:CombinedHeatPower"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <simpleType name="CompressorTypeValueType">
+    <restriction base="string">
+      <enumeration value="reciprocatingCompressorHermetic"/>
+      <enumeration value="reciprocatingCompressorSemiHermetic"/>
+      <enumeration value="reciprocatingCompressorOpen"/>
+      <enumeration value="rotaryVaneCompressor"/>
+      <enumeration value="scrollCompressor"/>
+      <enumeration value="screwCompressor"/>
+      <enumeration value="centrifugalCompressor"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="CondensationTypeValueType">
+    <restriction base="string">
+      <enumeration value="dryCooling"/>
+      <enumeration value="evaporativeCooling"/>
+      <enumeration value="hybridCooling"/>
+      <enumeration value="adiabaticCooling"/>
+      <enumeration value="freeCooling"/>
+    </restriction>
+  </simpleType>
+  <element name="ConstantValueSchedule" substitutionGroup="nrg:AbstractSchedule" type="nrg:ConstantValueScheduleType"/>
+  <complexType name="ConstantValueScheduleType">
+    <complexContent>
+      <extension base="nrg:AbstractScheduleType">
+        <sequence>
+          <element name="averageValue" type="gml:MeasureType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="ConstantValueSchedulePropertyType">
+    <sequence minOccurs="0">
+      <element ref="nrg:ConstantValueSchedule"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <simpleType name="ConstructionWeightValueType">
+    <restriction base="string">
+      <enumeration value="veryLight"/>
+      <enumeration value="light"/>
+      <enumeration value="medium"/>
+      <enumeration value="heavy"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="CurrentUseValueType">
+    <union memberTypes="nrg:CurrentUseValueEnumerationType nrg:CurrentUseValueOtherType"/>
+  </simpleType>
+  <simpleType name="CurrentUseValueEnumerationType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="CurrentUseValueOtherType">
+    <restriction base="string">
+      <pattern value="other: \w{2,}"/>
+    </restriction>
+  </simpleType>
+  <element name="DHWFacilities" substitutionGroup="nrg:Facilities" type="nrg:DHWFacilitiesType"/>
+  <complexType name="DHWFacilitiesType">
+    <complexContent>
+      <extension base="nrg:FacilitiesType">
+        <sequence>
+          <element minOccurs="0" name="numberOfBaths" type="integer"/>
+          <element minOccurs="0" name="numberOfShowers" type="integer"/>
+          <element minOccurs="0" name="numberOfWashBasins" type="integer"/>
+          <element minOccurs="0" name="waterStorageVolume" type="gml:VolumeType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="DHWFacilitiesPropertyType">
+    <sequence minOccurs="0">
+      <element ref="nrg:DHWFacilities"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="DailyPatternSchedule" substitutionGroup="nrg:AbstractSchedule" type="nrg:DailyPatternScheduleType"/>
+  <complexType name="DailyPatternScheduleType">
+    <complexContent>
+      <extension base="nrg:AbstractScheduleType">
+        <sequence>
+          <element name="timeDependingValues" type="double"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="DailyPatternSchedulePropertyType">
+    <sequence minOccurs="0">
+      <element ref="nrg:DailyPatternSchedule"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="DateOfEvent" substitutionGroup="gml:AbstractObject" type="nrg:DateOfEventType"/>
+  <complexType name="DateOfEventType">
+    <choice>
+      <element name="instant" type="gml:TimePositionType"/>
+      <element name="period" type="gml:TimePeriodPropertyType"/>
+    </choice>
+  </complexType>
+  <complexType name="DateOfEventPropertyType">
+    <sequence>
+      <element ref="nrg:DateOfEvent"/>
+    </sequence>
+  </complexType>
+  <simpleType name="DistributionTypeValueType">
+    <restriction base="string">
+      <enumeration value="building"/>
+      <enumeration value="dwelling"/>
+      <enumeration value="groupOfBuildings"/>
+      <enumeration value="room"/>
+      <enumeration value="staircase"/>
+      <enumeration value="storey"/>
+    </restriction>
+  </simpleType>
+  <element name="DualValueSchedule" substitutionGroup="nrg:AbstractSchedule" type="nrg:DualValueScheduleType"/>
+  <complexType name="DualValueScheduleType">
+    <complexContent>
+      <extension base="nrg:AbstractScheduleType">
+        <sequence>
+          <element default="24" minOccurs="0" name="usageHoursPerDay" type="double"/>
+          <element default="365" minOccurs="0" name="usageDaysPerYear" type="double"/>
+          <element name="usageValue" type="gml:MeasureType"/>
+          <element name="idleValue" type="gml:MeasureType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="DualValueSchedulePropertyType">
+    <sequence minOccurs="0">
+      <element ref="nrg:DualValueSchedule"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="ElectricalAppliances" substitutionGroup="nrg:Facilities" type="nrg:ElectricalAppliancesType"/>
+  <complexType name="ElectricalAppliancesType">
+    <complexContent>
+      <extension base="nrg:FacilitiesType">
+        <sequence>
+          <element minOccurs="0" name="electricalPower" type="gml:MeasureType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="ElectricalAppliancesPropertyType">
+    <sequence minOccurs="0">
+      <element ref="nrg:ElectricalAppliances"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="ElectricalResistance" substitutionGroup="nrg:AbstractEnergyConversionSystem" type="nrg:ElectricalResistanceType"/>
+  <complexType name="ElectricalResistanceType">
+    <complexContent>
+      <extension base="nrg:AbstractEnergyConversionSystemType">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="ElectricalResistancePropertyType">
+    <sequence minOccurs="0">
+      <element ref="nrg:ElectricalResistance"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="Emissivity" substitutionGroup="gml:AbstractObject" type="nrg:EmissivityType"/>
+  <complexType name="EmissivityType">
+    <sequence>
+      <element name="fraction" type="gml:ScaleType"/>
+      <element name="surface" type="nrg:SurfaceSideType"/>
+    </sequence>
+  </complexType>
+  <complexType name="EmissivityPropertyType">
+    <sequence>
+      <element ref="nrg:Emissivity"/>
+    </sequence>
+  </complexType>
+  <element name="EmitterSystem" substitutionGroup="nrg:AbstractEnergySystem" type="nrg:EmitterSystemType"/>
+  <complexType name="EmitterSystemType">
+    <complexContent>
+      <extension base="nrg:AbstractEnergySystemType">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="emitts" type="nrg:EnergyFlowPropertyType">
+            <annotation>
+              <appinfo>
+                <reversePropertyName xmlns="http://www.opengis.net/gml/3.2">nrg:isEmittedBy</reversePropertyName>
+              </appinfo>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="emitterType" type="nrg:EmitterTypeValueType"/>
+          <element minOccurs="0" name="installedPower" type="gml:MeasureType"/>
+          <element minOccurs="0" name="thermalExchange" type="nrg:HeatExchangeTypePropertyType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="EmitterSystemPropertyType">
+    <sequence minOccurs="0">
+      <element ref="nrg:EmitterSystem"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <simpleType name="EmitterTypeValueType">
+    <restriction base="string">
+      <enumeration value="radiator"/>
+      <enumeration value="convector"/>
+      <enumeration value="radiantFloor"/>
+      <enumeration value="radiantCeiling"/>
+      <enumeration value="radiantWall"/>
+      <enumeration value="splitUnit"/>
+      <enumeration value="2PipesFanCoilUnit"/>
+      <enumeration value="4PipesFanCoilUnit"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="EndUseTypeValueType">
+    <restriction base="string">
+      <enumeration value="cooking"/>
+      <enumeration value="domesticHotWater"/>
+      <enumeration value="electricalAppliances"/>
+      <enumeration value="lighting"/>
+      <enumeration value="otherOrCombination"/>
+      <enumeration value="spaceCooling"/>
+      <enumeration value="spaceHeating"/>
+      <enumeration value="ventilation"/>
+      <enumeration value="process"/>
+    </restriction>
+  </simpleType>
+  <element name="EnergyADECityObjectProperties" substitutionGroup="core:ADEOfAbstractCityObject" type="nrg:EnergyADECityObjectPropertiesType"/>
+  <complexType name="EnergyADECityObjectPropertiesType">
+    <complexContent>
+      <extension base="core:ADEOfAbstractCityObjectType">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="demands" type="nrg:EnergyDemandPropertyType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="weatherData" type="nrg:WeatherDataPropertyType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="EnergyADECityObjectPropertiesPropertyType">
+    <sequence>
+      <element ref="nrg:EnergyADECityObjectProperties"/>
+    </sequence>
+  </complexType>
+  <element name="EnergyDemand" substitutionGroup="core:AbstractFeatureWithLifespan" type="nrg:EnergyDemandType"/>
+  <complexType name="EnergyDemandType">
+    <complexContent>
+      <extension base="core:AbstractFeatureWithLifespanType">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="demandedBy" type="core:AbstractCityObjectPropertyType"/>
+          <element name="dynamizer" type="core:AbstractDynamizerPropertyType"/>
+          <element name="energyAmount" type="gml:MeasureType"/>
+          <element name="endUse" type="nrg:EndUseTypeValueType"/>
+          <element minOccurs="0" name="maximumLoad" type="gml:MeasureType"/>
+          <element minOccurs="0" name="energyCarrierType" type="gml:CodeType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="EnergyDemandPropertyType">
+    <sequence minOccurs="0">
+      <element ref="nrg:EnergyDemand"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="EnergyFlow" substitutionGroup="core:AbstractFeatureWithLifespan" type="nrg:EnergyFlowType"/>
+  <complexType name="EnergyFlowType">
+    <complexContent>
+      <extension base="core:AbstractFeatureWithLifespanType">
+        <sequence>
+          <element name="dynamizer" type="core:AbstractDynamizerPropertyType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="isDistributedBy" type="nrg:AbstractEnergyDistributionSystemPropertyType">
+            <annotation>
+              <appinfo>
+                <reversePropertyName xmlns="http://www.opengis.net/gml/3.2">nrg:distributes</reversePropertyName>
+              </appinfo>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="isProvidedBy" type="nrg:AbstractEnergyConversionSystemPropertyType">
+            <annotation>
+              <appinfo>
+                <reversePropertyName xmlns="http://www.opengis.net/gml/3.2">nrg:provides</reversePropertyName>
+              </appinfo>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="isStoredBy" type="nrg:AbstractStorageSystemPropertyType">
+            <annotation>
+              <appinfo>
+                <reversePropertyName xmlns="http://www.opengis.net/gml/3.2">nrg:stores</reversePropertyName>
+              </appinfo>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="isEmittedBy" type="nrg:EmitterSystemPropertyType">
+            <annotation>
+              <appinfo>
+                <reversePropertyName xmlns="http://www.opengis.net/gml/3.2">nrg:emitts</reversePropertyName>
+              </appinfo>
+            </annotation>
+          </element>
+          <element name="energyAmount" type="gml:MeasureType"/>
+          <element minOccurs="0" name="energyCarriertype" type="gml:CodeType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="EnergyFlowPropertyType">
+    <sequence minOccurs="0">
+      <element ref="nrg:EnergyFlow"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="EnergyPerformanceCertification" substitutionGroup="gml:AbstractObject" type="nrg:EnergyPerformanceCertificationType"/>
+  <complexType name="EnergyPerformanceCertificationType">
+    <sequence>
+      <element name="rating" type="string"/>
+      <element name="name" type="string"/>
+      <element minOccurs="0" name="certificationId" type="string"/>
+    </sequence>
+  </complexType>
+  <complexType name="EnergyPerformanceCertificationPropertyType">
+    <sequence>
+      <element ref="nrg:EnergyPerformanceCertification"/>
+    </sequence>
+  </complexType>
+  <element name="EnergySource" substitutionGroup="nrg:EnergyFlow" type="nrg:EnergySourceType"/>
+  <complexType name="EnergySourceType">
+    <complexContent>
+      <extension base="nrg:EnergyFlowType">
+        <sequence>
+          <element name="co2EmissionFactor" type="gml:MeasureType"/>
+          <element minOccurs="0" name="energyDensity" type="gml:MeasureType"/>
+          <element name="primaryEnergyFactor" type="gml:MeasureType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="EnergySourcePropertyType">
+    <sequence minOccurs="0">
+      <element ref="nrg:EnergySource"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="Facilities" substitutionGroup="core:AbstractOccupiedSpace" type="nrg:FacilitiesType"/>
+  <complexType name="FacilitiesType">
+    <complexContent>
+      <extension base="core:AbstractOccupiedSpaceType">
+        <sequence>
+          <element minOccurs="0" name="operationSchedule">
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractFeatureMemberType">
+                  <sequence minOccurs="0">
+                    <element ref="nrg:AbstractSchedule"/>
+                  </sequence>
+                  <attributeGroup ref="gml:AssociationAttributeGroup"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="heatDissipation" type="nrg:HeatExchangeTypePropertyType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="FacilitiesPropertyType">
+    <sequence minOccurs="0">
+      <element ref="nrg:Facilities"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="Gas" substitutionGroup="nrg:AbstractMaterial" type="nrg:GasType"/>
+  <complexType name="GasType">
+    <complexContent>
+      <extension base="nrg:AbstractMaterialType">
+        <sequence>
+          <element default="false" minOccurs="0" name="isVentilated" type="boolean"/>
+          <element minOccurs="0" name="rValue" type="gml:MeasureType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="GasPropertyType">
+    <sequence minOccurs="0">
+      <element ref="nrg:Gas"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="GenericConversionSystem" substitutionGroup="nrg:AbstractEnergyConversionSystem" type="nrg:GenericConversionSystemType"/>
+  <complexType name="GenericConversionSystemType">
+    <complexContent>
+      <extension base="nrg:AbstractEnergyConversionSystemType">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="GenericConversionSystemPropertyType">
+    <sequence minOccurs="0">
+      <element ref="nrg:GenericConversionSystem"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="HeatExchangeType" substitutionGroup="gml:AbstractObject" type="nrg:HeatExchangeTypeType"/>
+  <complexType name="HeatExchangeTypeType">
+    <sequence>
+      <element minOccurs="0" name="convectiveFraction" type="gml:ScaleType"/>
+      <element minOccurs="0" name="latentFraction" type="gml:ScaleType"/>
+      <element minOccurs="0" name="radiantFraction" type="gml:ScaleType"/>
+      <element name="totalValue" type="gml:MeasureType"/>
+    </sequence>
+  </complexType>
+  <complexType name="HeatExchangeTypePropertyType">
+    <sequence>
+      <element ref="nrg:HeatExchangeType"/>
+    </sequence>
+  </complexType>
+  <element name="HeatExchanger" substitutionGroup="nrg:AbstractEnergyConversionSystem" type="nrg:HeatExchangerType"/>
+  <complexType name="HeatExchangerType">
+    <complexContent>
+      <extension base="nrg:AbstractEnergyConversionSystemType">
+        <sequence>
+          <element name="networkId" type="string"/>
+          <element name="networkNodeId" type="string"/>
+          <element minOccurs="0" name="primaryHeatSupplier" type="string"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="HeatExchangerPropertyType">
+    <sequence minOccurs="0">
+      <element ref="nrg:HeatExchanger"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="HeatPump" substitutionGroup="nrg:AbstractEnergyConversionSystem" type="nrg:HeatPumpType"/>
+  <complexType name="HeatPumpType">
+    <complexContent>
+      <extension base="nrg:AbstractEnergyConversionSystemType">
+        <sequence>
+          <element name="heatSource" type="nrg:HeatSourceTypeValueType"/>
+          <element minOccurs="0" name="copSourceTemperature" type="gml:MeasureType"/>
+          <element minOccurs="0" name="copOperationTemperature" type="gml:MeasureType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="HeatPumpPropertyType">
+    <sequence minOccurs="0">
+      <element ref="nrg:HeatPump"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <simpleType name="HeatSourceTypeValueType">
+    <restriction base="string">
+      <enumeration value="ambientAir"/>
+      <enumeration value="aquifer"/>
+      <enumeration value="exhaustAir"/>
+      <enumeration value="horizontalGroundCollector"/>
+      <enumeration value="verticalGroundCollector"/>
+    </restriction>
+  </simpleType>
+  <element name="Household" substitutionGroup="core:AbstractFeatureWithLifespan" type="nrg:HouseholdType"/>
+  <complexType name="HouseholdType">
+    <complexContent>
+      <extension base="core:AbstractFeatureWithLifespanType">
+        <sequence>
+          <element minOccurs="0" name="residenceType" type="nrg:ResidenceTypeValueType"/>
+          <element minOccurs="0" name="householdType" type="nrg:HouseholdTypeValueType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="HouseholdPropertyType">
+    <sequence minOccurs="0">
+      <element ref="nrg:Household"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <simpleType name="HouseholdTypeValueType">
+    <restriction base="string">
+      <enumeration value="loneAdult"/>
+      <enumeration value="multiFamily"/>
+      <enumeration value="oneFamily"/>
+      <enumeration value="pensionerCouple"/>
+      <enumeration value="unrelatedAdults"/>
+      <enumeration value="vacant"/>
+      <enumeration value="workerCouple"/>
+    </restriction>
+  </simpleType>
+  <element name="ImageTexture" substitutionGroup="core:AbstractFeatureWithLifespan" type="nrg:ImageTextureType"/>
+  <complexType name="ImageTextureType">
+    <complexContent>
+      <extension base="core:AbstractFeatureWithLifespanType">
+        <sequence>
+          <element name="url" type="anyURI"/>
+          <element name="repeatS" type="boolean"/>
+          <element name="repeatT" type="boolean"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="ImageTexturePropertyType">
+    <sequence minOccurs="0">
+      <element ref="nrg:ImageTexture"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <simpleType name="InterpolationTypeValueType">
+    <restriction base="string">
+      <enumeration value="averageInPrecedingInterval"/>
+      <enumeration value="averageInSucceedingInterval"/>
+      <enumeration value="constantInPrecedingInterval"/>
+      <enumeration value="constantInSucceedingInterval"/>
+      <enumeration value="continuous"/>
+      <enumeration value="discontinuous"/>
+      <enumeration value="instantaneousTotal"/>
+      <enumeration value="maximumInPrecedingInterval"/>
+      <enumeration value="maximumInSucceedingInterval"/>
+      <enumeration value="minimumInPrecedingInterval"/>
+      <enumeration value="minimumInSucceedingInterval"/>
+      <enumeration value="precedingTotal"/>
+      <enumeration value="succeedingTotal"/>
+    </restriction>
+  </simpleType>
+  <element name="Layer" substitutionGroup="core:AbstractFeatureWithLifespan" type="nrg:LayerType"/>
+  <complexType name="LayerType">
+    <complexContent>
+      <extension base="core:AbstractFeatureWithLifespanType">
+        <sequence>
+          <element maxOccurs="unbounded" name="layerComponent" type="nrg:LayerComponentPropertyType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="LayerPropertyType">
+    <sequence minOccurs="0">
+      <element ref="nrg:Layer"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="LayerComponent" substitutionGroup="core:AbstractFeatureWithLifespan" type="nrg:LayerComponentType"/>
+  <complexType name="LayerComponentType">
+    <complexContent>
+      <extension base="core:AbstractFeatureWithLifespanType">
+        <sequence>
+          <element name="material" type="nrg:AbstractMaterialPropertyType"/>
+          <element default="1.0" minOccurs="0" name="areaFraction" type="gml:ScaleType"/>
+          <element minOccurs="0" name="thickness" type="gml:LengthType"/>
+          <element minOccurs="0" name="serviceLife" type="nrg:ServiceLifePropertyType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="LayerComponentPropertyType">
+    <sequence minOccurs="0">
+      <element ref="nrg:LayerComponent"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="LayeredMaterial" substitutionGroup="nrg:AbstractLayeredMaterial" type="nrg:LayeredMaterialType"/>
+  <complexType name="LayeredMaterialType">
+    <complexContent>
+      <extension base="nrg:AbstractLayeredMaterialType">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="layer" type="nrg:LayerPropertyType"/>
+          <element minOccurs="0" name="uValue" type="gml:MeasureType"/>
+          <element minOccurs="0" name="opticalProperties" type="nrg:OpticalPropertiesPropertyType"/>
+          <element minOccurs="0" name="serviceLife" type="nrg:ServiceLifePropertyType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="LayeredMaterialPropertyType">
+    <sequence minOccurs="0">
+      <element ref="nrg:LayeredMaterial"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="LightingFacilities" substitutionGroup="nrg:Facilities" type="nrg:LightingFacilitiesType"/>
+  <complexType name="LightingFacilitiesType">
+    <complexContent>
+      <extension base="nrg:FacilitiesType">
+        <sequence>
+          <element minOccurs="0" name="electricalPower" type="gml:MeasureType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="LightingFacilitiesPropertyType">
+    <sequence minOccurs="0">
+      <element ref="nrg:LightingFacilities"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="MechanicalVentilation" substitutionGroup="nrg:AbstractEnergyConversionSystem" type="nrg:MechanicalVentilationType"/>
+  <complexType name="MechanicalVentilationType">
+    <complexContent>
+      <extension base="nrg:AbstractEnergyConversionSystemType">
+        <sequence>
+          <element name="hasHeatRecovery" type="boolean"/>
+          <element name="recuperationFactor" type="gml:ScaleType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="MechanicalVentilationPropertyType">
+    <sequence minOccurs="0">
+      <element ref="nrg:MechanicalVentilation"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <simpleType name="MediumTypeValueType">
+    <restriction base="string">
+      <enumeration value="air"/>
+      <enumeration value="steam"/>
+      <enumeration value="water"/>
+    </restriction>
+  </simpleType>
+  <element name="Occupants" substitutionGroup="core:AbstractFeatureWithLifespan" type="nrg:OccupantsType"/>
+  <complexType name="OccupantsType">
+    <complexContent>
+      <extension base="core:AbstractFeatureWithLifespanType">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="household">
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractFeatureMemberType">
+                  <sequence minOccurs="0">
+                    <element ref="nrg:Household"/>
+                  </sequence>
+                  <attributeGroup ref="gml:AssociationAttributeGroup"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="heatDissipation" type="nrg:HeatExchangeTypePropertyType"/>
+          <element minOccurs="0" name="numberOfOccupants" type="integer"/>
+          <element minOccurs="0" name="occupancyRate">
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractFeatureMemberType">
+                  <sequence minOccurs="0">
+                    <element ref="nrg:AbstractSchedule"/>
+                  </sequence>
+                  <attributeGroup ref="gml:AssociationAttributeGroup"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="occupantType" type="gml:CodeType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="OccupantsPropertyType">
+    <sequence minOccurs="0">
+      <element ref="nrg:Occupants"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="OpticalProperties" substitutionGroup="gml:AbstractObject" type="nrg:OpticalPropertiesType"/>
+  <complexType name="OpticalPropertiesType">
+    <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="emissivity" type="nrg:EmissivityPropertyType"/>
+      <element maxOccurs="unbounded" minOccurs="0" name="reflectance" type="nrg:ReflectancePropertyType"/>
+      <element maxOccurs="unbounded" minOccurs="0" name="transmittance" type="nrg:TransmittancePropertyType"/>
+      <element minOccurs="0" name="glazingRatio" type="gml:ScaleType"/>
+    </sequence>
+  </complexType>
+  <complexType name="OpticalPropertiesPropertyType">
+    <sequence>
+      <element ref="nrg:OpticalProperties"/>
+    </sequence>
+  </complexType>
+  <simpleType name="OwnershipTypeValueType">
+    <union memberTypes="nrg:OwnershipTypeValueEnumerationType nrg:OwnershipTypeValueOtherType"/>
+  </simpleType>
+  <simpleType name="OwnershipTypeValueEnumerationType">
+    <restriction base="string">
+      <enumeration value="corporation"/>
+      <enumeration value="government"/>
+      <enumeration value="nonOccupantPrivateOwner"/>
+      <enumeration value="nonProfitOrganisation"/>
+      <enumeration value="occupantPrivateOwner"/>
+      <enumeration value="propertyManagementCompany"/>
+      <enumeration value="otherOrCombination"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="OwnershipTypeValueOtherType">
+    <restriction base="string">
+      <pattern value="other: \w{2,}"/>
+    </restriction>
+  </simpleType>
+  <element name="PhotovoltaicSystem" substitutionGroup="nrg:AbstractSolarEnergySystem" type="nrg:PhotovoltaicSystemType"/>
+  <complexType name="PhotovoltaicSystemType">
+    <complexContent>
+      <extension base="nrg:AbstractSolarEnergySystemType">
+        <sequence>
+          <element name="cellType" type="nrg:CellTypeValueType"/>
+          <element minOccurs="0" name="moduleArea" type="gml:AreaType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="PhotovoltaicSystemPropertyType">
+    <sequence minOccurs="0">
+      <element ref="nrg:PhotovoltaicSystem"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="PhotovoltaicThermalSystem" substitutionGroup="nrg:AbstractSolarEnergySystem" type="nrg:PhotovoltaicThermalSystemType"/>
+  <complexType name="PhotovoltaicThermalSystemType">
+    <complexContent>
+      <extension base="nrg:AbstractSolarEnergySystemType">
+        <sequence>
+          <element name="cellType" type="nrg:CellTypeValueType"/>
+          <element name="collectorType" type="nrg:CollectorTypeValueType"/>
+          <element minOccurs="0" name="moduleArea" type="gml:AreaType"/>
+          <element minOccurs="0" name="apertureArea" type="gml:AreaType"/>
+          <element minOccurs="0" name="opticalEfficiency" type="gml:ScaleType"/>
+          <element minOccurs="0" name="linearHeatLossCoefficient" type="double"/>
+          <element minOccurs="0" name="quadraticHeatLossCoefficient" type="double"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="PhotovoltaicThermalSystemPropertyType">
+    <sequence minOccurs="0">
+      <element ref="nrg:PhotovoltaicThermalSystem"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="PowerDistributionSystem" substitutionGroup="nrg:AbstractEnergyDistributionSystem" type="nrg:PowerDistributionSystemType"/>
+  <complexType name="PowerDistributionSystemType">
+    <complexContent>
+      <extension base="nrg:AbstractEnergyDistributionSystemType">
+        <sequence>
+          <element minOccurs="0" name="current" type="gml:MeasureType"/>
+          <element minOccurs="0" name="voltage" type="gml:MeasureType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="PowerDistributionSystemPropertyType">
+    <sequence minOccurs="0">
+      <element ref="nrg:PowerDistributionSystem"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="PowerStorageSystem" substitutionGroup="nrg:AbstractStorageSystem" type="nrg:PowerStorageSystemType"/>
+  <complexType name="PowerStorageSystemType">
+    <complexContent>
+      <extension base="nrg:AbstractStorageSystemType">
+        <sequence>
+          <element minOccurs="0" name="batteryTechnology" type="string"/>
+          <element minOccurs="0" name="powerCapacity" type="gml:MeasureType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="PowerStorageSystemPropertyType">
+    <sequence minOccurs="0">
+      <element ref="nrg:PowerStorageSystem"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="Reflectance" substitutionGroup="gml:AbstractObject" type="nrg:ReflectanceType"/>
+  <complexType name="ReflectanceType">
+    <sequence>
+      <element name="fraction" type="gml:ScaleType"/>
+      <element name="surface" type="nrg:SurfaceSideType"/>
+      <element name="wavelengthRange" type="nrg:WavelengthRangeTypeType"/>
+    </sequence>
+  </complexType>
+  <complexType name="ReflectancePropertyType">
+    <sequence>
+      <element ref="nrg:Reflectance"/>
+    </sequence>
+  </complexType>
+  <element name="RefurbishmentMeasure" substitutionGroup="gml:AbstractObject" type="nrg:RefurbishmentMeasureType"/>
+  <complexType name="RefurbishmentMeasureType">
+    <sequence>
+      <element name="date" type="nrg:DateOfEventPropertyType"/>
+      <element name="level" type="gml:CodeType"/>
+      <element minOccurs="0" name="description" type="string"/>
+    </sequence>
+  </complexType>
+  <complexType name="RefurbishmentMeasurePropertyType">
+    <sequence>
+      <element ref="nrg:RefurbishmentMeasure"/>
+    </sequence>
+  </complexType>
+  <element name="RegularTimeseries" substitutionGroup="dyn:AbstractAtomicTimeseries" type="nrg:RegularTimeseriesType"/>
+  <complexType name="RegularTimeseriesType">
+    <complexContent>
+      <extension base="dyn:AbstractAtomicTimeseriesType">
+        <sequence>
+          <element name="timeInterval" type="gml:TimeIntervalLengthType"/>
+          <element name="values" type="gml:MeasureListType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="RegularTimeseriesPropertyType">
+    <sequence minOccurs="0">
+      <element ref="nrg:RegularTimeseries"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <simpleType name="ResidenceTypeValueType">
+    <restriction base="string">
+      <enumeration value="mainResidence"/>
+      <enumeration value="secondaryResidence"/>
+      <enumeration value="vacant"/>
+    </restriction>
+  </simpleType>
+  <element name="ReverseLayeredMaterial" substitutionGroup="nrg:AbstractLayeredMaterial" type="nrg:ReverseLayeredMaterialType"/>
+  <complexType name="ReverseLayeredMaterialType">
+    <complexContent>
+      <extension base="nrg:AbstractLayeredMaterialType">
+        <sequence>
+          <element name="baseLayering" type="nrg:LayeredMaterialPropertyType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="ReverseLayeredMaterialPropertyType">
+    <sequence minOccurs="0">
+      <element ref="nrg:ReverseLayeredMaterial"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="ServiceLife" substitutionGroup="gml:AbstractObject" type="nrg:ServiceLifeType"/>
+  <complexType name="ServiceLifeType">
+    <sequence>
+      <element minOccurs="0" name="startOfLife" type="gml:TimePositionType"/>
+      <element minOccurs="0" name="lifeExpectancy" type="gml:TimeIntervalLengthType"/>
+      <element minOccurs="0" name="mainMaintenanceInterval" type="gml:TimeIntervalLengthType"/>
+    </sequence>
+  </complexType>
+  <complexType name="ServiceLifePropertyType">
+    <sequence>
+      <element ref="nrg:ServiceLife"/>
+    </sequence>
+  </complexType>
+  <element name="ShadingType" substitutionGroup="gml:AbstractObject" type="nrg:ShadingTypeType"/>
+  <complexType name="ShadingTypeType">
+    <sequence>
+      <element name="maximumCoverRatio" type="gml:ScaleType"/>
+      <element minOccurs="0" name="name" type="string"/>
+      <element name="transmittance" type="nrg:TransmittancePropertyType"/>
+    </sequence>
+  </complexType>
+  <complexType name="ShadingTypePropertyType">
+    <sequence>
+      <element ref="nrg:ShadingType"/>
+    </sequence>
+  </complexType>
+  <element name="SolarThermalSystem" substitutionGroup="nrg:AbstractSolarEnergySystem" type="nrg:SolarThermalSystemType"/>
+  <complexType name="SolarThermalSystemType">
+    <complexContent>
+      <extension base="nrg:AbstractSolarEnergySystemType">
+        <sequence>
+          <element name="collectorType" type="nrg:CollectorTypeValueType"/>
+          <element minOccurs="0" name="apertureArea" type="gml:AreaType"/>
+          <element minOccurs="0" name="opticalEfficiency" type="gml:ScaleType"/>
+          <element minOccurs="0" name="linearHeatLossCoefficient" type="double"/>
+          <element minOccurs="0" name="quadraticHeatLossCoefficient" type="double"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="SolarThermalSystemPropertyType">
+    <sequence minOccurs="0">
+      <element ref="nrg:SolarThermalSystem"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="SolidMaterial" substitutionGroup="nrg:AbstractMaterial" type="nrg:SolidMaterialType"/>
+  <complexType name="SolidMaterialType">
+    <complexContent>
+      <extension base="nrg:AbstractMaterialType">
+        <sequence>
+          <element minOccurs="0" name="conductivity" type="gml:MeasureType"/>
+          <element minOccurs="0" name="density" type="gml:MeasureType"/>
+          <element minOccurs="0" name="permeance" type="gml:MeasureType"/>
+          <element minOccurs="0" name="porosity" type="gml:ScaleType"/>
+          <element minOccurs="0" name="specificHeat" type="gml:MeasureType"/>
+          <element minOccurs="0" name="embodiedCarbon" type="gml:MeasureType"/>
+          <element minOccurs="0" name="embodiedEnergy" type="gml:MeasureType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="SolidMaterialPropertyType">
+    <sequence minOccurs="0">
+      <element ref="nrg:SolidMaterial"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <simpleType name="SurfaceSideType">
+    <restriction base="string">
+      <enumeration value="inside"/>
+      <enumeration value="outside"/>
+    </restriction>
+  </simpleType>
+  <element name="SystemOperation" substitutionGroup="core:AbstractFeatureWithLifespan" type="nrg:SystemOperationType"/>
+  <complexType name="SystemOperationType">
+    <complexContent>
+      <extension base="core:AbstractFeatureWithLifespanType">
+        <sequence>
+          <element name="endUse" type="nrg:EndUseTypeValueType"/>
+          <element minOccurs="0" name="operationTime">
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractFeatureMemberType">
+                  <sequence minOccurs="0">
+                    <element ref="nrg:AbstractSchedule"/>
+                  </sequence>
+                  <attributeGroup ref="gml:AssociationAttributeGroup"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="yearlyGlobalEfficiency" type="double"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="SystemOperationPropertyType">
+    <sequence minOccurs="0">
+      <element ref="nrg:SystemOperation"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="TabulatedFileTimeseriesExtension" substitutionGroup="dyn:ADEOfTabulatedFileTimeseries" type="nrg:TabulatedFileTimeseriesExtensionType"/>
+  <complexType name="TabulatedFileTimeseriesExtensionType">
+    <complexContent>
+      <extension base="dyn:ADEOfTabulatedFileTimeseriesType">
+        <sequence>
+          <element default="\n" minOccurs="0" name="recordSeparator" type="string"/>
+          <element minOccurs="0" name="timeInterval" type="gml:TimeIntervalLengthType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="TabulatedFileTimeseriesExtensionPropertyType">
+    <sequence>
+      <element ref="nrg:TabulatedFileTimeseriesExtension"/>
+    </sequence>
+  </complexType>
+  <element name="ThermalBoundary" substitutionGroup="core:AbstractThematicSurface" type="nrg:ThermalBoundaryType"/>
+  <complexType name="ThermalBoundaryType">
+    <complexContent>
+      <extension base="core:AbstractThematicSurfaceType">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="relatesTo" type="con:AbstractConstructionSurfacePropertyType"/>
+          <element minOccurs="0" name="layering" type="nrg:AbstractLayeredMaterialPropertyType"/>
+          <element maxOccurs="2" name="delimits" type="nrg:ThermalZonePropertyType">
+            <annotation>
+              <appinfo>
+                <reversePropertyName xmlns="http://www.opengis.net/gml/3.2">nrg:boundary</reversePropertyName>
+              </appinfo>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="contains">
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractFeatureMemberType">
+                  <sequence minOccurs="0">
+                    <element ref="nrg:ThermalOpening"/>
+                  </sequence>
+                  <attributeGroup ref="gml:AssociationAttributeGroup"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+          <element name="thermalBoundaryType" type="nrg:ThermalBoundaryTypeValueType"/>
+          <element minOccurs="0" name="azimuth" type="gml:AngleType"/>
+          <element minOccurs="0" name="inclination" type="gml:AngleType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="refurbishmentMeasure" type="nrg:RefurbishmentMeasurePropertyType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="ThermalBoundaryPropertyType">
+    <sequence minOccurs="0">
+      <element ref="nrg:ThermalBoundary"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <simpleType name="ThermalBoundaryTypeValueType">
+    <restriction base="string">
+      <enumeration value="interiorWall"/>
+      <enumeration value="intermediaryFloor"/>
+      <enumeration value="sharedWall"/>
+      <enumeration value="outerWall"/>
+      <enumeration value="groundSlab"/>
+      <enumeration value="basementCeiling"/>
+      <enumeration value="atticFloor"/>
+      <enumeration value="roof"/>
+    </restriction>
+  </simpleType>
+  <element name="ThermalDistributionSystem" substitutionGroup="nrg:AbstractEnergyDistributionSystem" type="nrg:ThermalDistributionSystemType"/>
+  <complexType name="ThermalDistributionSystemType">
+    <complexContent>
+      <extension base="nrg:AbstractEnergyDistributionSystemType">
+        <sequence>
+          <element minOccurs="0" name="isCirculation" type="boolean"/>
+          <element minOccurs="0" name="medium" type="nrg:MediumTypeValueType"/>
+          <element minOccurs="0" name="nominalFlow" type="gml:MeasureType"/>
+          <element minOccurs="0" name="returnTemperature" type="gml:MeasureType"/>
+          <element minOccurs="0" name="supplyTemperature" type="gml:MeasureType"/>
+          <element minOccurs="0" name="thermalLossesFactor" type="gml:MeasureType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="ThermalDistributionSystemPropertyType">
+    <sequence minOccurs="0">
+      <element ref="nrg:ThermalDistributionSystem"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="ThermalOpening" substitutionGroup="core:AbstractThematicSurface" type="nrg:ThermalOpeningType"/>
+  <complexType name="ThermalOpeningType">
+    <complexContent>
+      <extension base="core:AbstractThematicSurfaceType">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="relatesTo" type="con:AbstractFillingSurfacePropertyType"/>
+          <element minOccurs="0" name="layering" type="nrg:AbstractLayeredMaterialPropertyType"/>
+          <element minOccurs="0" name="indoorShading" type="nrg:ShadingTypePropertyType"/>
+          <element minOccurs="0" name="outdoorShading" type="nrg:ShadingTypePropertyType"/>
+          <element minOccurs="0" name="openableRatio" type="gml:ScaleType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="ThermalOpeningPropertyType">
+    <sequence minOccurs="0">
+      <element ref="nrg:ThermalOpening"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="ThermalStorageSystem" substitutionGroup="nrg:AbstractStorageSystem" type="nrg:ThermalStorageSystemType"/>
+  <complexType name="ThermalStorageSystemType">
+    <complexContent>
+      <extension base="nrg:AbstractStorageSystemType">
+        <sequence>
+          <element minOccurs="0" name="preparationTemperature" type="gml:MeasureType"/>
+          <element minOccurs="0" name="medium" type="nrg:MediumTypeValueType"/>
+          <element minOccurs="0" name="thermalLossesFactor" type="gml:MeasureType"/>
+          <element minOccurs="0" name="storageVolume" type="gml:VolumeType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="ThermalStorageSystemPropertyType">
+    <sequence minOccurs="0">
+      <element ref="nrg:ThermalStorageSystem"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="ThermalZone" substitutionGroup="nrg:AbstractThermalZone" type="nrg:ThermalZoneType"/>
+  <complexType name="ThermalZoneType">
+    <complexContent>
+      <extension base="nrg:AbstractThermalZoneType">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="interiorRoom" type="bldg:BuildingRoomPropertyType"/>
+          <element minOccurs="0" name="additionalThermalBridgeUValue" type="gml:MeasureType"/>
+          <element minOccurs="0" name="effectiveThermalCapacity" type="gml:MeasureType"/>
+          <element minOccurs="0" name="indirectlyHeatedAreaRatio" type="gml:ScaleType"/>
+          <element minOccurs="0" name="infiltrationRate" type="gml:MeasureType"/>
+          <element default="true" name="isCooled" type="boolean"/>
+          <element default="true" name="isHeated" type="boolean"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="ThermalZonePropertyType">
+    <sequence minOccurs="0">
+      <element ref="nrg:ThermalZone"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="TimeValuesProperties" substitutionGroup="dyn:ADEOfAbstractTimeseries" type="nrg:TimeValuesPropertiesType"/>
+  <complexType name="TimeValuesPropertiesType">
+    <complexContent>
+      <extension base="dyn:ADEOfAbstractTimeseriesType">
+        <sequence>
+          <element name="acquisitionMethod" type="nrg:AcquisitionMethodValueType"/>
+          <element name="interpolationType" type="nrg:InterpolationTypeValueType"/>
+          <element minOccurs="0" name="qualityDescription" type="string"/>
+          <element minOccurs="0" name="source" type="string"/>
+          <element minOccurs="0" name="thematicDescription" type="string"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="TimeValuesPropertiesPropertyType">
+    <sequence>
+      <element ref="nrg:TimeValuesProperties"/>
+    </sequence>
+  </complexType>
+  <element name="TimeseriesSchedule" substitutionGroup="nrg:AbstractSchedule" type="nrg:TimeseriesScheduleType"/>
+  <complexType name="TimeseriesScheduleType">
+    <complexContent>
+      <extension base="nrg:AbstractScheduleType">
+        <sequence>
+          <element name="timeDependingValues" type="double"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="TimeseriesSchedulePropertyType">
+    <sequence minOccurs="0">
+      <element ref="nrg:TimeseriesSchedule"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="Transmittance" substitutionGroup="gml:AbstractObject" type="nrg:TransmittanceType"/>
+  <complexType name="TransmittanceType">
+    <sequence>
+      <element name="fraction" type="gml:ScaleType"/>
+      <element name="wavelengthRange" type="nrg:WavelengthRangeTypeType"/>
+    </sequence>
+  </complexType>
+  <complexType name="TransmittancePropertyType">
+    <sequence>
+      <element ref="nrg:Transmittance"/>
+    </sequence>
+  </complexType>
+  <element name="UsageZone" substitutionGroup="nrg:AbstractUsageZone" type="nrg:UsageZoneType"/>
+  <complexType name="UsageZoneType">
+    <complexContent>
+      <extension base="nrg:AbstractUsageZoneType">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="contains">
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractFeatureMemberType">
+                  <sequence minOccurs="0">
+                    <element ref="bldg:BuildingUnit"/>
+                  </sequence>
+                  <attributeGroup ref="gml:AssociationAttributeGroup"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="equippedWith" type="nrg:FacilitiesPropertyType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="occupiedBy" type="nrg:OccupantsPropertyType"/>
+          <element minOccurs="0" name="coolingSchedule">
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractFeatureMemberType">
+                  <sequence minOccurs="0">
+                    <element ref="nrg:AbstractSchedule"/>
+                  </sequence>
+                  <attributeGroup ref="gml:AssociationAttributeGroup"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="heatingSchedule">
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractFeatureMemberType">
+                  <sequence minOccurs="0">
+                    <element ref="nrg:AbstractSchedule"/>
+                  </sequence>
+                  <attributeGroup ref="gml:AssociationAttributeGroup"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+          <element name="usageZoneType" type="nrg:CurrentUseValueType"/>
+          <element minOccurs="0" name="usedFloors" type="gml:integerList"/>
+          <element minOccurs="0" name="ventilationSchedule">
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractFeatureMemberType">
+                  <sequence minOccurs="0">
+                    <element ref="nrg:AbstractSchedule"/>
+                  </sequence>
+                  <attributeGroup ref="gml:AssociationAttributeGroup"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="averageInternalGains" type="nrg:HeatExchangeTypePropertyType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="UsageZonePropertyType">
+    <sequence minOccurs="0">
+      <element ref="nrg:UsageZone"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <simpleType name="WavelengthRangeTypeType">
+    <restriction base="string">
+      <enumeration value="solar"/>
+      <enumeration value="infrared"/>
+      <enumeration value="visible"/>
+      <enumeration value="total"/>
+    </restriction>
+  </simpleType>
+  <element name="WeatherData" substitutionGroup="core:AbstractFeatureWithLifespan" type="nrg:WeatherDataType"/>
+  <complexType name="WeatherDataType">
+    <complexContent>
+      <extension base="core:AbstractFeatureWithLifespanType">
+        <sequence>
+          <element minOccurs="0" name="position" type="gml:PointPropertyType"/>
+          <element name="dynamizer" type="core:AbstractDynamizerPropertyType"/>
+          <element name="weatherDataType" type="nrg:WeatherDataTypeValueType"/>
+          <element name="values" type="gml:MeasureType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="WeatherDataPropertyType">
+    <sequence minOccurs="0">
+      <element ref="nrg:WeatherData"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <simpleType name="WeatherDataTypeValueType">
+    <restriction base="string">
+      <enumeration value="airTemperature"/>
+      <enumeration value="humidity"/>
+      <enumeration value="windSpeed"/>
+      <enumeration value="cloudiness"/>
+      <enumeration value="globalSolarIrradiance"/>
+      <enumeration value="directSolarIrradiance"/>
+      <enumeration value="diffuseSolarIrradiance"/>
+      <enumeration value="terrestrialEmission"/>
+      <enumeration value="downwardTerrestrialRadiation"/>
+      <enumeration value="daylightIlluminance"/>
+    </restriction>
+  </simpleType>
+  <element name="WeatherStation" substitutionGroup="core:AbstractOccupiedSpace" type="nrg:WeatherStationType"/>
+  <complexType name="WeatherStationType">
+    <complexContent>
+      <extension base="core:AbstractOccupiedSpaceType">
+        <sequence>
+          <element minOccurs="0" name="stationName" type="string"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="WeatherStationPropertyType">
+    <sequence minOccurs="0">
+      <element ref="nrg:WeatherStation"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+</schema>

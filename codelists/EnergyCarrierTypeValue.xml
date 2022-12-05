@@ -1,0 +1,63 @@
+<?xml-stylesheet type='text/xsl' href='./CodelistDictionary-v32.xsl'?><gml:Dictionary xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" gml:id="EnergyCarrierTypeValue" xsi:schemaLocation="http://www.opengis.net/gml/3.2 null">
+  <gml:identifier codeSpace="www.energyADE.de">EnergyCarrierTypeValue</gml:identifier>
+  <gml:dictionaryEntry>
+    <gml:Definition gml:id="_8501_11026">
+      <gml:identifier codeSpace="www.energyADE.de/EnergyCarrierTypeValue">chilledAir</gml:identifier>
+    </gml:Definition>
+  </gml:dictionaryEntry>
+  <gml:dictionaryEntry>
+    <gml:Definition gml:id="_8501_11027">
+      <gml:identifier codeSpace="www.energyADE.de/EnergyCarrierTypeValue">chilledWater</gml:identifier>
+    </gml:Definition>
+  </gml:dictionaryEntry>
+  <gml:dictionaryEntry>
+    <gml:Definition gml:id="_8501_11028">
+      <gml:identifier codeSpace="www.energyADE.de/EnergyCarrierTypeValue">coal</gml:identifier>
+    </gml:Definition>
+  </gml:dictionaryEntry>
+  <gml:dictionaryEntry>
+    <gml:Definition gml:id="_8501_11029">
+      <gml:identifier codeSpace="www.energyADE.de/EnergyCarrierTypeValue">electricity</gml:identifier>
+    </gml:Definition>
+  </gml:dictionaryEntry>
+  <gml:dictionaryEntry>
+    <gml:Definition gml:id="_8501_11030">
+      <gml:identifier codeSpace="www.energyADE.de/EnergyCarrierTypeValue">fuelOil</gml:identifier>
+    </gml:Definition>
+  </gml:dictionaryEntry>
+  <gml:dictionaryEntry>
+    <gml:Definition gml:id="_8501_11031">
+      <gml:identifier codeSpace="www.energyADE.de/EnergyCarrierTypeValue">hotAir</gml:identifier>
+    </gml:Definition>
+  </gml:dictionaryEntry>
+  <gml:dictionaryEntry>
+    <gml:Definition gml:id="_8501_11032">
+      <gml:identifier codeSpace="www.energyADE.de/EnergyCarrierTypeValue">hotWater</gml:identifier>
+    </gml:Definition>
+  </gml:dictionaryEntry>
+  <gml:dictionaryEntry>
+    <gml:Definition gml:id="_8501_11033">
+      <gml:identifier codeSpace="www.energyADE.de/EnergyCarrierTypeValue">naturalGas</gml:identifier>
+    </gml:Definition>
+  </gml:dictionaryEntry>
+  <gml:dictionaryEntry>
+    <gml:Definition gml:id="_8501_11034">
+      <gml:identifier codeSpace="www.energyADE.de/EnergyCarrierTypeValue">propane</gml:identifier>
+    </gml:Definition>
+  </gml:dictionaryEntry>
+  <gml:dictionaryEntry>
+    <gml:Definition gml:id="_8501_11035">
+      <gml:identifier codeSpace="www.energyADE.de/EnergyCarrierTypeValue">steam</gml:identifier>
+    </gml:Definition>
+  </gml:dictionaryEntry>
+  <gml:dictionaryEntry>
+    <gml:Definition gml:id="_8501_11036">
+      <gml:identifier codeSpace="www.energyADE.de/EnergyCarrierTypeValue">woodChips</gml:identifier>
+    </gml:Definition>
+  </gml:dictionaryEntry>
+  <gml:dictionaryEntry>
+    <gml:Definition gml:id="_8501_11037">
+      <gml:identifier codeSpace="www.energyADE.de/EnergyCarrierTypeValue">woodPallets</gml:identifier>
+    </gml:Definition>
+  </gml:dictionaryEntry>
+</gml:Dictionary>

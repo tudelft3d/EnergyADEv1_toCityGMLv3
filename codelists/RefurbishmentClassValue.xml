@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='./CodelistDictionary-v32.xsl'?><gml:Dictionary xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" gml:id="RefurbishmentClassValue" xsi:schemaLocation="http://www.opengis.net/gml/3.2 null">
+  <gml:identifier codeSpace="www.energyADE.de">RefurbishmentClassValue</gml:identifier>
+  <gml:dictionaryEntry>
+    <gml:Definition gml:id="_8489_11023">
+      <gml:identifier codeSpace="www.energyADE.de/RefurbishmentClassValue">advanced</gml:identifier>
+    </gml:Definition>
+  </gml:dictionaryEntry>
+  <gml:dictionaryEntry>
+    <gml:Definition gml:id="_8489_11024">
+      <gml:identifier codeSpace="www.energyADE.de/RefurbishmentClassValue">norefurbishment</gml:identifier>
+    </gml:Definition>
+  </gml:dictionaryEntry>
+  <gml:dictionaryEntry>
+    <gml:Definition gml:id="_8489_11025">
+      <gml:identifier codeSpace="www.energyADE.de/RefurbishmentClassValue">standard</gml:identifier>
+    </gml:Definition>
+  </gml:dictionaryEntry>
+</gml:Dictionary>
